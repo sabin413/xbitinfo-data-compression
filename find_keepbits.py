@@ -26,7 +26,7 @@ def compute_and_save_keepbits(
     ds_vars = ds[included_vars]
 
     # 3. Dimensions for xbitinfo
-    kb_dims = [d for d, n in ds_vars.sizes.items() if n > 5 and "d" != "nf"] # only "long" enough  dimensions, also exclude "nf" if present
+    kb_dims = [d for d, n in ds_vars.sizes.items() if n > 5 and d != "nf"] # only "long" enough  dimensions, also exclude "nf" if present
     bitinfo = xb.get_bitinformation(ds_vars, dim=kb_dims) # bitinfo in all dims
     keepbits = xb.get_keepbits(bitinfo, inflevel=inflevel).max(dim="dim") # keep max
     
