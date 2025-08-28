@@ -43,10 +43,11 @@ def compute_and_save_keepbits(
 
     return out_inf
 
-start = time.time()
+#start = time.time()
 if __name__ == "__main__":
+    start = time.time()
     out_put_address = "/home/sadhika8/JupyterLinks/nobackup/gmao-compression/compression.990/"
     data = "/discover/nobackup/projects/gmao/geos-s2s-3/GiOCEAN_e1/sfc_tavg_3hr_glo_L720x361_sfc/GiOCEAN_e1.sfc_tavg_3hr_glo_L720x361_sfc.monthly.199801.nc4"
     compute_and_save_keepbits(input_path=data, out_inf=out_put_address, inflevel=0.99)
-end = time.time()
-print(f"time: {end-start:.2f} secs")
+    end = time.time()
+    print(f"time: {end-start:.2f} secs")
