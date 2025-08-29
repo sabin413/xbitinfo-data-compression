@@ -1,4 +1,4 @@
-# compress with pre-computed keepbits
+# compress a file with pre-computed keepbits
 
 from pathlib import Path
 import shutil
@@ -6,43 +6,36 @@ import tempfile
 import time
 import xarray as xr
 #import xbitinfo as xb
+import configparser  # <-- added
+import sys
 
-def _read_keepbits_inf(path: str | Path) -> tuple[dict[str, int], float]:
-    '''read pre-computed keepbits from a file''' 
-    kb = {}
-    inflevel = None
-    with open(path, "r") as f:
-        for line in f:
-            s = line.strip()
-            if not s or s.startswith("#") or s.startswith("file="):
-                continue
-            if s.startswith("inflevel="):
-                inflevel = float(s.split("=", 1)[1])
-            if ":" in s:
-                v, k = s.split(":", 1)
-                kb[v.strip()] = int(k.strip())
-    if inflevel is None:
-        raise ValueError("inflevel missing in .inf")
-    return kb, inflevel
+def _read_keepbits(keepbits_ini: str | Path) -> dict[str, int]:
+    '''Read pre-computed keepbits from a .ini config file <keepbits_ini>
+    and output a {variable: no_of_keepbit} dictionary'''
+    cfg = configparser.ConfigParser(interpolation=None)
+    cfg.optionxform = str
+    cfg.read(keepbits_ini)
+    
+    return {k: int(v) for k, v in cfg["keepbits"].items()} 
 
 
 def compress_with_keepbits(
     input_path: str | Path,
     output_path: str | Path,
-    keepbits_inf: str | Path,
+    keepbits_ini: str | Path,
 ) -> None:
-    """
-    Read precomputed keepbits and then zlib-compress the file using xbitinfo rounding. 
-    Save the file at output_path.
-    """
+    '''
+    Read precomputed keepbits from a .ini config file <keepbits_ini>, compress 
+    the input file <input_path>, then save the compressed file to <output_path>. 
+    '''
     input_path = Path(input_path)
     output_path = Path(output_path)
 
     # 1. Load dataset
     ds = xr.open_dataset(input_path, mask_and_scale=False)
 
-    # 2. Read keepbits from .inf 
-    kb_map, inflevel = _read_keepbits_inf(keepbits_inf)
+    # 2. Read keepbits from .ini
+    kb_map  = _read_keepbits(keepbits_ini)
 
     # 3. Drop vars with keepbits <= 0 (we won't quantize those)
     kb_selected = {v: kb for v, kb in kb_map.items() if kb > 0}
@@ -59,26 +52,39 @@ def compress_with_keepbits(
     tmp = Path(tempfile.mktemp(suffix=".nc4", dir=str(output_path.parent)))
     ds.to_netcdf(tmp, format="NETCDF4", engine="netcdf4", encoding=enc)
     shutil.move(tmp, output_path)
-    
+
+    ds.close()
+
     infile_size = input_path.stat().st_size / (1024 * 1024)
     outfile_size = output_path.stat().st_size / (1024 * 1024)
-   # print(infile_size, outfile_size, infile_size/outfile_size)
+    print(f"input file: {infile_size} MB, compressed file: {outfile_size} MB, compression ratio: {infile_size/outfile_size}")
    # print(f"✔ File written: {output_path}")
 
-
 if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print(f"Usage: python {Path(sys.argv[0]).name} <path_to_config_file>")
+        sys.exit(1)
+
+    ini_path = Path(sys.argv[1])
+    cfg = configparser.ConfigParser(interpolation=None)
+    cfg.optionxform = str  # preserve key case
+    cfg.read(ini_path)
+
+    # Expecting:
+    # [config]
+    # INPUT_FILE   = /path/to/file.nc4
+    # OUTPUT_FILE  = /path/to/output_file.nc4
+    # KEEPBITS_INI = /path/to/keepbits.ini
+    input_path   = Path(cfg["config"]["INPUT_FILE"])
+    output_path  = Path(cfg["config"]["OUTPUT_FILE"])
+    keepbits_ini = Path(cfg["config"]["KEEPBITS_INI"])
 
     start = time.time()
-    data =  "/discover/nobackup/projects/gmao/geos-s2s-3/GiOCEAN_e1/sfc_tavg_3hr_glo_L720x361_sfc/GiOCEAN_e1.sfc_tavg_3hr_glo_L720x361_sfc.monthly.199801.nc4"
-    # Directory where Part 1 saved the .inf files; filename derived from input_path
-    keepbits_dir = "/home/sadhika8/JupyterLinks/nobackup/gmao-compression/compression.990"
-    keepbits_inf = Path(keepbits_dir) / (Path(data).name + ".inf")
-
     compress_with_keepbits(
-        input_path=data,
-        output_path="sample.nc4",
-        keepbits_inf=keepbits_inf,
+        input_path=input_path,
+        output_path=output_path,
+        keepbits_ini=keepbits_ini,
     )
     end = time.time()
+    print(f"completed in {end-start:.2f} secs")
 
-    print(f"time: {end-start:.2f} secs")
