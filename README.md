@@ -14,7 +14,7 @@ This repository provides Python scripts for compressing a single file, and compr
   Compresses multiple files in a batch, following the keepbits rules defined in the config.
 
 ## **Config Files**
-Each script has a **matching `.ini` file** with the same name, for example:
+Each script has a **matching `.ini` file** with the same name for convenience, for example:
 
 find_keepbits.py → find_keepbits.ini
 
@@ -22,10 +22,11 @@ compress_with_keepbits.py → compress_with_keepbits.ini
 
 compress_with_keepbits_many_files.py → compress_with_keepbits_many_files.ini
 
+The user assigned parameters are stored inside these config files. The name of these config files can be anything as long as the structure is matched.
 
 ## **Usage**
 
-Run each script with its corresponding config file:
+Run each script with its corresponding config file. 
 ```bash
 python find_keepbits.py find_keepbits.ini
 python compress_with_keepbits.py compress_with_keepbits.ini
