@@ -32,9 +32,7 @@ python find_keepbits.py find_keepbits.ini
 python compress_with_keepbits.py compress_with_keepbits.ini
 python compress_with_keepbits_many_files.py compress_with_keepbits_many_files.ini
 
-
-
-
+---
 ## **Dependencies**
 
 - Python **3.8+**
