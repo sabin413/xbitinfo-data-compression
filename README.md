@@ -36,6 +36,6 @@ python compress_with_keepbits_many_files.py compress_with_keepbits_many_files.in
 
 ## Dependencies
 
-- Python **3.8+**
+- Python **3.9+**
 - The scripts for **compression** (`compress_with_keepbits.py` and `compress_with_keepbits_many_files.py`) only need **xarray** in addition to the standard Python libraries.
 - The script for **calculating bit information** (`find_keepbits.py`) requires **xbitinfo**, which can be found here: [xbitinfo GitHub](https://github.com/ashiklom/gmao-compression/blob/main/README.md)
