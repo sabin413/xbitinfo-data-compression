@@ -1,7 +1,7 @@
 # xbitinfo-data-compression
 
-This repository provides Python scripts for compressing a single file, and compressing all files inside a directory and its subdirectories at any depth using a precomputed bitinformation `.ini` config file. Once the number of keepbits for each variable is precomputed, that is used by netcdf4's standard compression method to compress all files in the same collection.
-It also includes the script used to precompute the bitinformation config file.
+This repository provides Python scripts for compressing a single file, and compressing all files inside a directory and its subdirectories at any depth using a precomputed bitinformation `.ini` config file.
+It also includes the script used to precompute the bitinformation config file. Once the number of keepbits for each variable is precomputed, it is used by netcdf4's standard compression method to compress all files in the same collection.
 
 ## **Scripts**
 
