@@ -38,6 +38,8 @@ def compute_and_save_keepbits(
     with xr.set_options(display_max_rows=100):
         print(keepbits)
 
+    ds.close()
+
     # Save keepbits as an INI:
     # [meta]
     # file = ...
