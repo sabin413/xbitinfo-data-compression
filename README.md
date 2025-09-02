@@ -22,7 +22,7 @@ compress_with_keepbits.py → compress_with_keepbits.ini
 
 compress_with_keepbits_many_files.py → compress_with_keepbits_many_files.ini
 
-The user assigned parameters are stored inside these config files. The name of these config files can be anything as long as the structure is matched.
+The user assigned parameters are stored inside these config files. The name of these config files can be changed by the users as long as the structure is matched.
 
 ## Usage
 
