@@ -29,7 +29,7 @@ The user assigned parameters are stored inside these config files. The name of t
 Run each script with its corresponding config file.
 
 ```bash
-python find_keepbits.py find_keepbits.ini
+pixi run python find_keepbits.py find_keepbits.ini
 python compress_with_keepbits.py compress_with_keepbits.ini
 python compress_with_keepbits_many_files.py compress_with_keepbits_many_files.ini
 ```
