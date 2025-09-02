@@ -29,9 +29,9 @@ The user assigned parameters are stored inside these config files. The name of t
 Run each script with its corresponding config file.
 
 ```bash
-python compress_with_keepbits.py compress_with_keepbits.ini # compress single file with pre-computed keepbits
-python compress_with_keepbits_many_files.py compress_with_keepbits_many_files.ini # compress multiple files with pre-computed keepbits
-pixi run python find_keepbits.py find_keepbits.ini # if you want to compute keepbits for your file (needs xbitinfo)
+python compress_with_keepbits.py compress_with_keepbits.ini 
+python compress_with_keepbits_many_files.py compress_with_keepbits_many_files.ini 
+pixi run python find_keepbits.py find_keepbits.ini 
 ```
 
 ## Dependencies
