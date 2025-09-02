@@ -31,7 +31,7 @@ Run each script with its corresponding config file.
 ```bash
 python compress_with_keepbits.py compress_with_keepbits.ini # compress single file with pre-computed keepbits
 python compress_with_keepbits_many_files.py compress_with_keepbits_many_files.ini # compress multiple files with pre-computed keepbits
-pixi run python find_keepbits.py find_keepbits.ini # if you want to compute keepbits for your file (needs xbitinfo installed)
+pixi run python find_keepbits.py find_keepbits.ini # if you want to compute keepbits for your file (needs xbitinfo)
 ```
 
 ## Dependencies
@@ -39,4 +39,4 @@ pixi run python find_keepbits.py find_keepbits.ini # if you want to compute keep
 - Python **3.9+**
 - The scripts for **compression** (`compress_with_keepbits.py` and `compress_with_keepbits_many_files.py`) only need **xarray** in addition to the standard Python libraries.
 - The script for **calculating bit information** (`find_keepbits.py`) requires **xbitinfo**.
-- For installation: Download the "pixi.lock" and "pyproject.toml" files. Then try "pixi install --locked". For more information see: [xbitinfo GitHub](https://github.com/ashiklom/gmao-compression/blob/main/README.md)
+- For xbitinfo installation: Download the "pixi.lock" and "pyproject.toml" files. Then try "pixi install --locked". For more information see: [xbitinfo GitHub](https://github.com/ashiklom/gmao-compression/blob/main/README.md)
