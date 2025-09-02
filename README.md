@@ -38,5 +38,5 @@ pixi run python find_keepbits.py find_keepbits.ini # if you want to compute keep
 
 - Python **3.9+**
 - The scripts for **compression** (`compress_with_keepbits.py` and `compress_with_keepbits_many_files.py`) only need **xarray** in addition to the standard Python libraries.
-- The script for **calculating bit information** (`find_keepbits.py`) requires **xbitinfo**
-For installatiin: Download the pixi.lock and pyproject.toml files. Then try "pixi install --locked". For more information see: [xbitinfo GitHub](https://github.com/ashiklom/gmao-compression/blob/main/README.md)
+- The script for **calculating bit information** (`find_keepbits.py`) requires **xbitinfo**.
+- For installation: Download the "pixi.lock" and "pyproject.toml" files. Then try "pixi install --locked". For more information see: [xbitinfo GitHub](https://github.com/ashiklom/gmao-compression/blob/main/README.md)
