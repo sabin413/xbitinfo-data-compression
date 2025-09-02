@@ -1,0 +1,36 @@
+[project]
+name = "gmao-compression"
+version = "0.1.0"
+description = "GMAO compression utilities"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "netcdf4>=1.6.5",
+    "xarray>=2025.4.0",
+    "xbitinfo>=0.0.3",
+    "zstandard>=0.23.0",
+]
+
+[project.scripts]
+compress = "gmao_compression.compress:main"
+decompress = "gmao_compression.decompress:main"
+verify = "gmao_compression.verify:main"
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64"]
+
+[tool.pixi.dependencies]
+conda = "*"
+pip = "*"
+python = "*"
+netcdf4 = ">=1.6.5,<2"
+xarray = ">=2025.6.1,<2026"
+xbitinfo = ">=0.0.4.dev1,<0.0.5"
+zstandard = ">=0.23.0,<0.24"
+hdf5plugin = "<5"
+h5netcdf = ">=1.6.3,<2"
+h5py = ">=3.10"
+
+[tool.pixi.activation]
+scripts = ["pixi_env.sh"]
