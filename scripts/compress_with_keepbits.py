@@ -6,7 +6,7 @@ import tempfile
 import time
 import xarray as xr
 #import xbitinfo as xb
-import configparser  # <-- added
+import configparser  
 import sys
 
 def _read_keepbits(keepbits_ini: str | Path) -> dict[str, int]:
