@@ -14,7 +14,7 @@ The script used to precompute the bitinformation is also included.
   Compresses multiple files in a batch using the precomputed keepbits from the config file.
 
 ## **Example Config Files**
-Each script has a matching `.ini` config file with the same name for convenience, for example:
+Each script has a matching ".ini" config file with the same name for convenience, for example:
 
 find_keepbits.py → find_keepbits.ini
 
