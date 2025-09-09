@@ -32,6 +32,7 @@ if __name__ == "__main__":
 
     # ---- walk and compress -------------------------------------------------------
     for root, _, files in os.walk(SOURCE_DIR):
+        # is a generator that yields one tuple (root, dirs, files) for every directory in the tree.
         for filename in sorted(files):
             if not filename.endswith(".nc4"):
                 continue
