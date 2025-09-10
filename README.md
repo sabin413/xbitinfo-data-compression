@@ -5,13 +5,13 @@ The script used to precompute the bitinformation is also included.
 ## **Scripts**
 
 - **`find_keepbits.py`**  
-  Computes bitinformation **keepbits** for a NetCDF data file and saves them into a `.ini` config file.
+  Computes bitinformation **keepbits** for each variable of a NetCDF data file and saves them into a `.ini` config file.
 
 - **`compress_with_keepbits.py`**  
   Compresses a single file using precomputed keepbits from the config file.
 
 - **`compress_with_keepbits_many_files.py`**  
-  Compresses multiple files in a batch using the precomputed keepbits from the config file.
+  Compresses multiple files using the precomputed keepbits from the config file.
 
 ## **Example Config Files**
 Each script has a matching ".ini" config file with the same name for convenience, for example:
