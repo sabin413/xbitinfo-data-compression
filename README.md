@@ -39,4 +39,4 @@ pixi run python find_keepbits.py find_keepbits.ini
 - Python **3.9+**
 - The scripts for **compression** (`compress_with_keepbits.py` and `compress_with_keepbits_many_files.py`) only need **xarray** in addition to the standard Python libraries.
 - The script for **calculating bit information** (`find_keepbits.py`) requires **xbitinfo**.
-- For xbitinfo installation: Clone the repo (or "pixi.lock" and "pyproject.toml" files), and run "pixi shell" to downloads the dependencies. Then run "exit". Then you can run your python scripts on the compute nodes:  "pixi run python find_keepbits.py find_keepbits.ini". For more information see: [xbitinfo GitHub](https://github.com/ashiklom/gmao-compression/blob/main/README.md)
+- For xbitinfo installation: Clone the repo (or "pixi.lock" and "pyproject.toml" files), and run "pixi shell" to download the dependencies. Then run "exit". Then you can run your python scripts on the compute nodes:  "pixi run python find_keepbits.py find_keepbits.ini". For more information see: [xbitinfo GitHub](https://github.com/ashiklom/gmao-compression/blob/main/README.md)
